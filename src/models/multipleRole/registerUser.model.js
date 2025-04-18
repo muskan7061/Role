@@ -1,11 +1,11 @@
 const { DataTypes, Model} = require("sequelize")
-const sequelize = require("../config/db")
+const sequelize = require("../../config/db")
 
 
 
-class User extends Model {}
+class registerUser extends Model {}
 
-User.init(
+registerUser.init(
     {
         id: {
             allowNull: false,
@@ -14,16 +14,20 @@ User.init(
             type: DataTypes.INTEGER
           },
           username: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            allowNull: false,
           },
           email: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true
           },
           password: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            allowNull: false,
           },
           role: {
-            type: DataTypes.ENUM("student", "college")
+            type: DataTypes.ENUM("user", "admin", "seller")
           },
     }, 
     {
@@ -34,4 +38,4 @@ User.init(
 )
 
 
-module.exports = {User}
+module.exports = {registerUser}
